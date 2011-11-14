@@ -307,7 +307,7 @@
 	@param prefix The prefix each string passed to the function begin with.
 	@param func The function passed each string, the passed in strings will be the full string including the prefix, it should be of the form <code>BOOL func(NSString * string)</code>
  */
-- (void)enumerateObjectsForKeysWithPrefix:(NSString*)prefix usingFunction:(BOOL (*)(id))func;
+- (void)enumerateObjectsForKeysWithPrefix:(NSString *)prefix usingFunction:(BOOL (*)(NSString*))func;
 /*!
 	@method enumerateObjectsUsingFunction:context:
 	@abstract Pass each members of a trie to a function.
@@ -315,7 +315,7 @@
 	@param func The function passed each string, it should be of the form <code>BOOL func(NSString * string, void * context)</code>
 	@param context An addtional parameter to be assed to each function call
  */
-- (void)enumerateObjectsUsingFunction:(BOOL (*)(id,void *))func context:(void*)context;
+- (void)enumerateObjectsUsingFunction:(BOOL (*)(NSString *,void *))func context:(void*)context;
 /*!
 	@method enumerateObjectsForKeysWithPrefix:usingFunction:context:
 	@abstract Pass each members of a trie with a given prefix to a function.
@@ -324,7 +324,7 @@
 	@param func The function passed each string, the passed in strings will be the full string including the prefix, it should be of the form <code>BOOL func(NSString * string, void * context)</code>
 	@param context An addtional parameter to be assed to each function call
  */
-- (void)enumerateObjectsForKeysWithPrefix:(NSString*)prefix usingFunction:(BOOL (*)(id,void *))func context:(void*)context;
+- (void)enumerateObjectsForKeysWithPrefix:(NSString*)prefix usingFunction:(BOOL (*)(NSString *,void *))func context:(void*)context;
 
 /*!
 	@method writeToFile:atomically:
@@ -336,7 +336,7 @@
  */
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)atomically;
 /*!
-	@method writeToURL:atomically:
+ 	@method writeToURL:atomically:
 	@abstract write a trie out to a file.
 	@discussion The outputed file is a property list file that can be used to create an <tt>NSArray</tt> as well as a <tt>NDTrie</tt> 
 	@param url The output file url
@@ -352,7 +352,7 @@
 	@discussion Each string is passed to the block <tt><i>block</i></tt>, the block can at any time stop the enumeration by setting its parameter <tt><i>stop</i></tt> to <tt>YES</tt>. The enumeration occurs in an indeterminate order.
 	@param block A block of the form <code>^(NSString * string, BOOL *stop)</code>
  */
-- (void)enumerateObjectsUsingBlock:(void (^)(id object, BOOL *stop))block;
+- (void)enumerateObjectsUsingBlock:(void (^)(NSString *object, BOOL *stop))block;
 /*!
 	@method enumerateObjectsForKeysWithPrefix:usingBlock:
 	@abstract Pass each members of a trie with a given prefix to a block.
@@ -360,7 +360,7 @@
 	@param prefix The prefix each string passed to the block begin with.
 	@param block A block of the form <code>^(NSString * string, BOOL *stop)</code>
  */
-- (void)enumerateObjectsForKeysWithPrefix:(NSString*)prefix usingBlock:(void (^)(id object, BOOL *stop))block;
+- (void)enumerateObjectsForKeysWithPrefix:(NSString*)prefix usingBlock:(void (^)(NSString *object, BOOL *stop))block;
 
 /*!
 	@method everyObjectPassingTest:

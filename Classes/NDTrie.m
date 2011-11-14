@@ -127,7 +127,7 @@ enum NDTriePListElelemt
 {
 	return [[[self alloc] initWithObjects:aStrings forKeys:aStrings count:aCount] autorelease];
 }
-+ (id)trieWithObjects:(id *)anObjects forKeys:(id *)aKeys count:(NSUInteger)aCount
++ (id)trieWithObjects:(id *)anObjects forKeys:(NSString **)aKeys count:(NSUInteger)aCount
 {
 	return [[[self alloc] initWithObjects:anObjects forKeys:aKeys count:aCount] autorelease];
 }
@@ -537,7 +537,7 @@ BOOL testFunc( id anObject, void * aContext )
 		count += setObjectForKey( [self root], aStrings[i], aStrings[i], keyComponentForString );
 }
 
-- (void)setObjects:(id *)anObjects forKeys:(id *)aKeys count:(NSUInteger)aCount
+- (void)setObjects:(id *)anObjects forKeys:(NSString **)aKeys count:(NSUInteger)aCount
 {
 	for( NSUInteger i = 0; i < aCount; i++ )
 		count += setObjectForKey( [self root], anObjects[i], aKeys[i], keyComponentForString );
