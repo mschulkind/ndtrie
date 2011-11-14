@@ -966,7 +966,7 @@ BOOL setObjectForKey( struct trieNode * aNode, id anObject, id aKey, NSUInteger 
 	forEveryObjectFromNode uses malloc instead of a variable-length automatic array,
 	so that the string would not have to be repeatedly reconsructed and because an automatic array would take up alot more stack space
  */
-static BOOL _recusiveForEveryObject( struct trieNode *, BOOL(*)(id,void*), void * );
+static BOOL _recursiveForEveryObject( struct trieNode *, BOOL(*)(id,void*), void * );
 void forEveryObjectFromNode( struct trieNode * aNode, BOOL(*aFunc)(id,void*), void * aContext )
 {
 	BOOL		theContinue = YES;
@@ -975,10 +975,10 @@ void forEveryObjectFromNode( struct trieNode * aNode, BOOL(*aFunc)(id,void*), vo
 		theContinue = aFunc( aNode->object, aContext );
 
 	for( NSUInteger i = 0; i < aNode->count && theContinue; i++ )
-		theContinue = _recusiveForEveryObject( aNode->children[i], aFunc, aContext );
+		theContinue = _recursiveForEveryObject( aNode->children[i], aFunc, aContext );
 }
 
-BOOL _recusiveForEveryObject( struct trieNode * aNode, BOOL(*aFunc)(id,void*), void * aContext )
+BOOL _recursiveForEveryObject( struct trieNode * aNode, BOOL(*aFunc)(id,void*), void * aContext )
 {
 	BOOL		theContinue = YES;
 
@@ -986,7 +986,7 @@ BOOL _recusiveForEveryObject( struct trieNode * aNode, BOOL(*aFunc)(id,void*), v
 		theContinue = aFunc( aNode->object, aContext );
 
 	for( NSUInteger i = 0; i < aNode->count && theContinue; i++ )
-		theContinue = _recusiveForEveryObject( aNode->children[i], aFunc, aContext );
+		theContinue = _recursiveForEveryObject( aNode->children[i], aFunc, aContext );
 	return theContinue;
 }
 
