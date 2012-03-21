@@ -389,7 +389,7 @@ static BOOL _addToArrayFunc( id anObject, void * anArray )
 - (BOOL)writeToURL:(NSURL *)aURL atomically:(BOOL)anAtomically { return [[self everyObject] writeToURL:aURL atomically:anAtomically]; }
 
 #ifdef NS_BLOCKS_AVAILABLE
-BOOL enumerateFunc( NSString * aString, void * aContext )
+static BOOL enumerateFunc( NSString * aString, void * aContext )
 {
 	BOOL	theStop = NO;
 	void (^theBlock)(NSString *, BOOL *) = (void (^)(NSString *, BOOL *))aContext;
@@ -412,7 +412,7 @@ struct testData
 	NSMutableArray * array;
 	BOOL (^block)(id, BOOL *);
 };
-BOOL testFunc( id anObject, void * aContext )
+static BOOL testFunc( id anObject, void * aContext )
 {
 	struct testData		* theData = (struct testData*)aContext;
 	BOOL				theTestResult = NO;
